@@ -1,2 +1,2 @@
 import { IWeb3NeyraAuth } from '../types';
-export declare const web3NeyraAuth: ({ authToken, refreshToken, }: IWeb3NeyraAuth) => Promise<void>;
+export declare const web3NeyraAuth: ({ authToken, refreshToken, history, dispatch, redirectUrl, subdomain, API_SIGN_IN_METAMASK, handleMetamaskLogin, savePubKey, errorMessages, handleSignUp, searchParams, setSignatureError, setIsConnecting, addNotification, REACT_APP_UNSTOPPABLE_CLIENT_ID, API_AUTH, setToken, SIGN_IN_ERROR_MESSAGES, account, wallet, disconnect, connect, signMessage, }: IWeb3NeyraAuth) => Promise<void>;
