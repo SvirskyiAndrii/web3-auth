@@ -1,12 +1,12 @@
 import axios from 'axios';
 import UAuth from '@uauth/js';
+import setToken from '../utils/set-token';
 
 export const loginUnstoppableEffect = async ({
   history,
   redirectUrl,
   REACT_APP_UNSTOPPABLE_CLIENT_ID,
   API_AUTH,
-  setToken,
 }) => {
   try {
     const uauth = new UAuth({

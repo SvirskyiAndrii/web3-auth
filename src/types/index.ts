@@ -1,30 +1,57 @@
+// export interface IWeb3NeyraAuth {
+//   apiConfigs: any;
+//   history: any;
+//   onboard: any;
+//   savePubKey: any;
+//   setSignatureError: any;
+//   setIsConnecting: any;
+//   signMessage: any;
+//   handlers: any;
+//   callback: any;
+// }
+
 export interface IWeb3NeyraAuth {
-  authToken: string;
-  refreshToken: string;
-  state: any;
-  label: string;
+  apiConfigs: {
+    API_SIGN_IN_METAMASK: string;
+    REACT_APP_UNSTOPPABLE_CLIENT_ID: string;
+    API_AUTH: string;
+  };
   history: any;
+  onboard: {
+    connect?: () => Promise<WalletConnection[]>;
+    disconnect?: (wallet: WalletConnection) => void;
+    wallet?: WalletConnection;
+    account?: string;
+  };
+  savePubKey: (address: string, publicKey: string) => void;
+  setSignatureError: (error: string) => void;
+  signMessage: (
+    setError: (error: string) => void,
+    provider: any
+  ) => Promise<SignedMessage>;
+  handlers: string[];
+  callback: Callback;
+}
+type CallbackTypeNames =
+  | 'onSuccess'
+  | 'onError'
+  | 'handleSignUp'
+  | 'addNotification';
+type Callback = ({
+  type,
+  params,
+}: {
+  type: CallbackTypeNames;
+  params: any;
+}) => void;
+interface WalletConnection {
   provider: any;
-  currentAccount: any;
-  dispatch: any;
-  redirectUrl: any;
-  subdomain: any;
-  API_SIGN_IN_METAMASK: any;
-  handleMetamaskLogin: any;
-  savePubKey: any;
-  errorMessages: any;
-  handleSignUp: any;
-  searchParams: any;
-  setSignatureError: any;
-  setIsConnecting: any;
-  addNotification: any;
-  REACT_APP_UNSTOPPABLE_CLIENT_ID: any;
-  API_AUTH: any;
-  setToken: any;
-  SIGN_IN_ERROR_MESSAGES: any;
-  account: any;
-  wallet: any;
-  disconnect: any;
-  connect: any;
-  signMessage: any;
+  label: string;
+  accounts: {
+    address: string;
+  }[];
+}
+
+interface SignedMessage {
+  signature: string;
 }

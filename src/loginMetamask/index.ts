@@ -4,11 +4,11 @@ export const loginMetamask = async ({
   publicAddress,
   signature,
   history,
-  dispatch,
   slug,
   redirectUrl,
   API_SIGN_IN_METAMASK,
-  handleMetamaskLogin,
+  handlers,
+  callback,
 }) => {
   const body = {
     publicAddress,
@@ -20,8 +20,11 @@ export const loginMetamask = async ({
     const res = await axios.post(API_SIGN_IN_METAMASK, body);
     const token = res.data.token;
     if (token) {
-      handleMetamaskLogin &&
-        handleMetamaskLogin({ res, dispatch, redirectUrl, history });
+      handlers.includes('onSuccess') &&
+        callback({
+          type: 'onSuccess',
+          params: { res, redirectUrl, history },
+        });
     }
     return res;
   } catch (error) {
