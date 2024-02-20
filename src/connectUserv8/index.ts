@@ -21,7 +21,7 @@ export const connectUserv8 = async ({
         },
       }
     );
-    setToken(response.data);
+    setToken(response);
   } catch (error) {
     console.error(error);
   }
